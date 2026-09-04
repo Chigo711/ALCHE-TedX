@@ -8,8 +8,12 @@ const daysUntilEvent = Math.max(
 
 export default {
   title: "TEDxALCHE",
+    theme: "What's Next?",
+  tagline: "Ideas Worth Spreading",
   org: "African Leadership College of Higher Education",
   location: "Mauritius",
+     venue: "Caudan Arts Centre, Port Louis, Mauritius",
+  ticketUrl: "https://otayo.com/en/event/tedx-alche-theme-whats-next/",
   eventDate,
   description:
     "TEDxALCHE brings together thinkers, builders, and changemakers in Mauritius for a day of bold ideas, meaningful connection, and future-facing conversations.",

@@ -1,57 +1,92 @@
 import { useEffect, useMemo, useState } from "react";
 import config from "../config.js";
 
-function useTypewriter(
-  phrases,
-  speed = 70,
-  deleteSpeed = 36,
-  pauseTime = 1800,
+function prefersReducedMotion() {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
+function useTaglineBuilder(
+  text,
+  { typeSpeed = 80, wordPause = 700, endPause = 2200, clearSpeed = 26 } = {},
 ) {
-  const [phraseIndex, setPhraseIndex] = useState(0);
+  const reducedMotion = useMemo(prefersReducedMotion, []);
+
+  // Character counts where a whole word has just been completed.
+  const wordStops = useMemo(() => {
+    const stops = [];
+    for (let index = 0; index < text.length; index += 1) {
+      if (text[index] === " ") stops.push(index);
+    }
+    stops.push(text.length);
+    return stops;
+  }, [text]);
+
   const [visibleChars, setVisibleChars] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isClearing, setIsClearing] = useState(false);
 
   useEffect(() => {
-    const currentPhrase = phrases[phraseIndex] ?? "";
-    const isPhraseComplete = visibleChars === currentPhrase.length;
-    const delay = isPhraseComplete
-      ? pauseTime
-      : isDeleting
-        ? deleteSpeed
-        : speed;
+    if (reducedMotion) return undefined;
+
+    const isComplete = visibleChars === text.length;
+    const atWordStop = visibleChars > 0 && wordStops.includes(visibleChars);
+
+    let delay = typeSpeed;
+    if (isClearing) delay = clearSpeed;
+    else if (isComplete) delay = endPause;
+    else if (atWordStop) delay = wordPause;
 
     const timeout = window.setTimeout(() => {
-      if (!isDeleting && visibleChars < currentPhrase.length) {
-        setVisibleChars((count) => count + 1);
-        return;
-      }
-
-      if (!isDeleting && isPhraseComplete) {
-        setIsDeleting(true);
-        return;
-      }
-
-      if (isDeleting && visibleChars > 0) {
+      if (isClearing) {
+        if (visibleChars === 0) {
+          setIsClearing(false);
+          return;
+        }
         setVisibleChars((count) => count - 1);
         return;
       }
 
-      setIsDeleting(false);
-      setPhraseIndex((index) => (index + 1) % phrases.length);
+      if (isComplete) {
+        setIsClearing(true);
+        return;
+      }
+
+      setVisibleChars((count) => count + 1);
     }, delay);
 
     return () => window.clearTimeout(timeout);
   }, [
-    deleteSpeed,
-    isDeleting,
-    pauseTime,
-    phraseIndex,
-    phrases,
-    speed,
+    clearSpeed,
+    endPause,
+    isClearing,
+    reducedMotion,
+    text.length,
+    typeSpeed,
     visibleChars,
+    wordPause,
+    wordStops,
   ]);
 
-  return phrases[phraseIndex]?.slice(0, visibleChars) ?? "";
+  return reducedMotion ? text : text.slice(0, visibleChars);
+}
+
+//Renders "TEDxALCHE" with the TEDx "x" in the brand red
+function BrandWordmark({ title }) {
+  const markIndex = title.indexOf("x");
+
+  if (markIndex === -1) {
+    return title;
+  }
+
+  return (
+    <>
+      {title.slice(0, markIndex)}
+      <span className="hero__mark">x</span>
+      {title.slice(markIndex + 1)}
+    </>
+  );
 }
 
 function useRotatingSlides(slides, pause = 4200) {
@@ -76,7 +111,6 @@ function Navigation() {
   const [open, setOpen] = useState(false);
   const items = [
     { label: "Home", href: "#home" },
-    { label: "Timeline", href: "#timeline" },
     { label: "Speakers", href: "#speakers" },
     { label: "Team", href: "#team" },
     { label: "Contact", href: "#contact" },
@@ -105,13 +139,6 @@ function Navigation() {
               {item.label}
             </a>
           ))}
-          <a
-            className="button button--ghost"
-            href="#contact"
-            onClick={() => setOpen(false)}
-          >
-            Nominate a speaker
-          </a>
         </nav>
       </div>
     </header>
@@ -119,46 +146,57 @@ function Navigation() {
 }
 
 function Hero() {
-  const typedText = useTypewriter(config.heroPhrases);
+  const tagline = useTaglineBuilder(config.tagline);
+
+  const eventDateLabel = useMemo(() => {
+    const parsed = new Date(config.eventDate);
+    return Number.isNaN(parsed.getTime())
+      ? config.eventDate
+      : parsed.toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        });
+  }, []);
 
   return (
-    <section id="home" className="hero section shell">
-      <div className="hero__grid">
-        <div className="hero__copy">
-          <p className="eyebrow">TEDx event in {config.location}</p>
-          <h2>Bold ideas, carefully staged for {config.org}.</h2>
-          <p className="hero__lede">{config.description}</p>
-          <div className="type-line" aria-live="polite">
-            <span>{typedText}</span>
-            <span className="type-line__cursor" aria-hidden="true" />
-          </div>
-          <div className="hero__actions">
-            <a className="button" href="#contact">
-              Contact the team
+    <section id="home" className="hero">
+
+      <div className="hero__media" aria-hidden="true">
+        <img src="/images/backgrounds/tedx-background.png" alt="" />
+      </div>
+
+      <div className="hero__inner shell">
+        <h1 className="hero__title">
+          <BrandWordmark title={config.title} />
+        </h1>
+        <p className="hero__subhead">{config.theme}</p>
+        <p className="hero__tagline">
+          <span className="sr-only">{config.tagline}</span>
+          <span aria-hidden="true">{tagline}</span>
+          <span className="hero__cursor" aria-hidden="true" />
+        </p>
+        <ul className="hero__details">
+          <li>{eventDateLabel}</li>
+          <li>{config.venue}</li>
+          <li>
+            <a href={config.ticketUrl} target="_blank" rel="noreferrer">
+              Get Tickets
             </a>
-            <a className="button button--ghost" href="#speakers">
-              View nominations
-            </a>
-          </div>
-        </div>
-        <div className="hero__panel">
-          <div className="hero-card">
-            <p className="hero-card__label">Event snapshot</p>
-            <div className="hero-card__stats">
-              {config.stats.map((stat) => (
-                <div key={stat.label} className="stat-tile">
-                  <span>{stat.label}</span>
-                  <strong>{stat.value}</strong>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="hero-card hero-card--image">
-            <img
-              src="/images/backgrounds/tedx-background.png"
-              alt="TEDx stage background"
-            />
-          </div>
+          </li>
+        </ul>
+        <div className="hero__actions">
+          <a
+            className="button"
+            href={config.ticketUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Get Tickets
+          </a>
+          <a className="button button--ghost" href="#speakers">
+            Meet the Speakers
+          </a>
         </div>
       </div>
     </section>

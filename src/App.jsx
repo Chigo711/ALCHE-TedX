@@ -145,7 +145,7 @@ function Hero() {
     <section id="home" className="hero">
 
       <div className="hero__media" aria-hidden="true">
-        <img src="/images/backgrounds/hero-section-background.jpg" alt="a person on a speaker stand" />
+        <img src="/images/backgrounds/hero-section-background.png" alt="a person on a speaker stand" />
       </div>
 
       <div className="hero__inner shell">

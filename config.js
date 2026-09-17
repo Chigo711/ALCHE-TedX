@@ -1,201 +1,188 @@
 const eventDate = "October 5, 2026";
 
-const msPerDay = 1000 * 60 * 60 * 24;
-const daysUntilEvent = Math.max(
-  0,
-  Math.ceil((new Date(eventDate) - new Date()) / msPerDay),
-);
-
 export default {
   title: "TEDxALCHE",
     theme: "What's Next?",
   tagline: "Ideas Worth Spreading",
   org: "African Leadership College of Higher Education",
   location: "Mauritius",
-     venue: "Caudan Arts Centre, Port Louis, Mauritius",
+    venue: "Caudan Arts Centre, Port Louis, Mauritius",
   ticketUrl: "https://otayo.com/en/event/tedx-alche-theme-whats-next/",
   eventDate,
   description:
     "TEDxALCHE brings together thinkers, builders, and changemakers in Mauritius for a day of bold ideas, meaningful connection, and future-facing conversations.",
-  heroPhrases: [
-    "Ideas worth spreading",
-    "African Leadership College of Higher Education",
-    "Reimagining education for Africa",
-    "Inspiration, innovation, and connection",
-    eventDate,
-    `${daysUntilEvent} days to go`,
-  ],
-  stats: [
-    { label: "Event Date", value: eventDate },
-    { label: "Venue", value: "ALCHE Campus" },
-    { label: "Format", value: "Live talks + curated experiences" },
-    { label: "Focus", value: "Leadership, education, innovation" },
-  ],
-  mission: {
-    title: "Our mission",
-    intro:
-      "We bring together thought leaders, innovators, and changemakers to explore the questions that will define tomorrow and spark conversations that lead to action.",
-    body: [
-      "Hosted by the African Leadership College of Higher Education, TEDxALCHE reflects a higher education model designed around agency, autonomy, and practical impact.",
-      "Students at ALCHE declare missions, not majors. That spirit shapes the event too: every session is built to encourage curiosity, challenge assumptions, and help ambitious people connect around ideas that matter.",
-      "By collapsing the distance between academia and the real world, ALCHE creates a learning environment where experimentation, leadership, and social impact can happen now, not someday after graduation.",
+
+  about: {
+    title: "About TEDxALCHE",
+    cards: [
+      {
+        centered: true,
+        body: [
+          "TEDxALCHE is an independently organised TEDx event, held under license from TED, taking place on 5 October 2026 at the Caudan Arts Centre in Port Louis, Mauritius. It marks the first TEDx experience hosted by the African Leadership College of Higher Education (ALCHE) organised entirely by a student team under the guidance of the Student Life department.",
+          "Bringing together 7 speakers and an audience of 100, TEDxALCHE is a platform for local voices, big ideas, and honest conversation about the future for Mauritius, for Africa, and beyond.",
+        ],
+      },
     ],
-    cta: {
-      label: "Join ALCHE",
-      href: "https://alcheducation.com/admissions/",
-    },
+    note: "x = independently organized TED event",
   },
-  timeline: [
-    {
-      date: "April 20, 2026",
-      title: "Speaker submission deadline",
-      detail: "Final day to nominate speakers and submit talk ideas.",
-    },
-    {
-      date: "May 18, 2026",
-      title: "Speaker selection",
-      detail: "Confirmed speakers are announced and coaching begins.",
-    },
-    {
-      date: "August 17, 2026",
-      title: "Training and rehearsals",
-      detail: "Script reviews, slide prep, and active stage rehearsals.",
-    },
-    {
-      date: "October 5, 2026",
-      title: "TEDxALCHE event day",
-      detail: "A full-day experience of ideas, stories, and connection.",
-    },
-  ],
-  nomination:
-    "We are looking for people with distinctive perspectives, practical insight, and stories capable of creating positive change in Mauritius and beyond.",
-  slides: [
-    "/images/slides/alu-alive.png",
-    "/images/slides/App-of-the-MOnth-TedX-Talks.png",
-    "/images/slides/IMG_3752.png",
-    "/images/slides/reslife-2.png",
-    "/images/slides/societies.png",
-    "/images/slides/student-life-banner.png",
-    "/images/slides/TED mic.png",
-    "/images/slides/thespian.png",
-  ],
+
+  themeSection: {
+    title: "What's Next?",
+    cards: [
+      {
+        centered: true,
+        body: [
+          "We're living through a moment of profound change in technology, in leadership, in how we understand ourselves and each other. \"What's Next?\" isn't a passive question. It's an active call to shape the future we want, rather than simply react to the one that happens to us.",
+        ],
+        questionsTitle: "Questions we're exploring",
+        questions: [
+          "What comes after innovation; what do we build that lasts?",
+          "What does progress actually look like?",
+          "What possibilities are we missing?",
+          "What questions define tomorrow?",
+        ],
+        outro: "Three Conversations, One Question",
+      },
+    ],
+  },
+
+  focusAreas: {
+    cards: [
+      {
+        title: "Sustainable Leadership",
+        body: [
+          "How do leaders build institutions, cultures, and systems that outlast individual moments — moving from short-term wins to long-term impact?",
+        ],
+        image: "/images/slides/TEDxALCHE.png",
+        imageAlt: "Students gathered at a campus event",
+      },
+      {
+        title: "Mental Health in the Era of AI and Digital Transformation",
+        body: [
+          "How can young people thrive in an increasingly digital world while protecting their wellbeing, purpose, and human connection?",
+        ],
+        image: "/images/slides/TEDxALCHE.png",
+        imageAlt: "Students together in residence life",
+      },
+      {
+        title: "From Legacy to Innovation",
+        body: [
+          "Lessons from history, art, and elders for building the future.",
+          "What can history, storytelling, culture, and lived wisdom teach us about building what comes next?",
+        ],
+        image: "/images/slides/TEDxALCHE.png",
+        imageAlt: "A student performance on stage",
+      },
+    ],
+  },
+
   speakers: [
+    // {
+    //   profileImage: "/images/speakers/Sidee.png",
+    //   link: "https://alcheducation.com/our-leadership/#:~:text=Sidee%20Dlamini",
+    //   title: "Keynote",
+    //   name: "Fred Swaniker",
+    //   subname: "Founder of African Leadership Group",
+    //   description:
+    //     "Recognized by President Obama in 2010 and 2013, Fred Swaniker has built institutions focused on identifying, developing, and connecting game-changing leaders across Africa.",
+    // },
     {
-      profileImage: "/images/speakers/Fred Swaniker.png",
-      link: "https://alcheducation.com/our-leadership/#:~:text=Fred%20Swaniker",
-      title: "Keynote",
-      subtitle: "ALCHE Founder",
-      name: "Fred Swaniker",
-      subname: "Founder of African Leadership Group",
+      profileImage: "/images/speakers/Sidee.png",
+      link: "https://alcheducation.com/our-leadership/#:~:text=Sidee%20Dlamini",
+      name: "Sidee Dlamini",
+      subname: "CEO, African Leadership University (ALU) ",
       description:
-        "Recognized by President Obama in 2010 and 2013, Fred Swaniker has built institutions focused on identifying, developing, and connecting game-changing leaders across Africa.",
+        "Since stepping into leadership of ALU this year, Sidee is stewarding a bold institutional legacy while helping shape what the next decade of ALU looks like — a case study in leading through transition.",
     },
     {
-      profileImage: "/images/speakers/SUSHRUTHI.png",
-      title: "Speaker",
-      subtitle: "Changemaker",
-      name: "Sushruthi Krishna",
-      subname: "Model and Architect",
+      profileImage: "/images/speakers/Jeremy.png",
+      link: "https://alcheducation.com/our-leadership/#:~:text=Jeremy%20Ruiters",
+      name: "Jeremy Ruiters",
+      subname: "Dean, African Leadership College of Higher Education (ALCHE)",
       description:
-        "A voice for empathy, care, and everyday acts that can radically change how people experience the world around them.",
+        " From Student Wellness Counsellor to Director of Student Life to Dean, Jeremy has spent his career at ALC/ALCHE committed to one constant: the holistic development and wellbeing of students — through the pandemic and now into the AI era.",
     },
     {
-      profileImage: "/images/speakers/hani.png",
-      link: "https://www.linkedin.com/in/hani-bundhun-4a8766201/",
-      title: "Speaker",
-      subtitle: "Finance",
-      name: "Hani Bundhun",
-      subname: "Commodity Trade Finance Associate",
+      profileImage: "/images/speakers/Naicken.png",
+      link: "https://alcheducation.com/our-leadership/#:~:text=Stephen%20Naicken",
+      name: "Dr Stephen Naicken",
+      subname: "Academic Director, African Leadership College of Higher Education (ALCHE)",
       description:
-        "A finance professional at Mauritius Commercial Bank specializing in the energy and commodities space.",
+        " An academic leader and computer scientist, Dr Naicken has shaped the student learning experience through profound change — from pre-pandemic classrooms to today's AI-enabled educational landscape.",
+    },
+    {
+      profileImage: "/images/speakers/Gabby.png",
+      // link: "https://www.linkedin.com/in/hani-bundhun-4a8766201/",
+      name: "Gabrielle Emem Harry",
+      subname: "ALCHE Student, Cultural Strategist & Award-Winning Speculative Fiction Writer ",
+      description:
+        " Working at the intersection of storytelling, technology, and cultural preservation, Gabrielle uses speculative fiction and digital innovation to make African and Afro-diasporic knowledge more accessible — and to reimagine what's possible for the continent",
+    },
+
+    {
+      profileImage: "/images/speakers/Jason.png",
+      // link: "https://www.linkedin.com/in/hani-bundhun-4a8766201/",
+      name: "Jason Delorie",
+      subname: "Managing Director & Partner, La Plage Factory ",
+      description:
+        " A driving force in Mauritius' entrepreneurial ecosystem, Jason's work with La Plage Factory and VC4A has helped build the pathways, mentorship, and partnerships that let founders and startup ecosystems succeed.",
+    },
+
+    {
+      profileImage: "/images/speakers/Nassima.png",
+      // link: "https://www.linkedin.com/in/hani-bundhun-4a8766201/",
+      name: "Nassima Sadar-Gravier",
+      subname: "Founder & CEO, AfroClimate",
+      description:
+        " From co-founding Mo Angels and Living Labs Federation to launching AfroClimate, Nassima's career has centred on building solutions that serve people and planet — connecting African innovators with the investment and expertise to scale sustainable impact.",
+    },
+
+    {
+      profileImage: "/images/speakers/Gua.png",
+      // link: "https://www.linkedin.com/in/hani-bundhun-4a8766201/",
+      name: "Stephan Gua",
+      subname: " Chairperson, Board of Directors, Intercontinental Slavery Museum",
+      description:
+        "  A researcher, creative, and cultural advocate, Stéphan's work sits at the intersection of historical preservation, storytelling, identity, and justice — shaping conversations around remembrance and collective identity",
     },
   ],
   team: [
+
     {
-      profileImage: "/images/team/tako.png",
-      title: "Event MC",
-      subtitle: "Master of Ceremonies",
-      name: "Tako",
-      subname: "Entrepreneurial Leadership Student",
-      description:
-        "Bringing energy to the stage while championing better infrastructure outcomes across Africa.",
-    },
-    {
-      profileImage: "/images/team/Gabrielle-Harry.png",
-      link: "https://www.linkedin.com/in/gabrielle-harry-1a9b3a1b0/",
-      title: "Author",
-      subtitle: "Cultural Strategist",
-      name: "Gabrielle Harry",
-      subname: "Digital Humanities and African Arts",
-      description:
-        "Focused on increasing access to African and Afro-diasporic knowledge through art, culture, and digital interventions.",
-    },
-    {
-      profileImage: "/images/team/lisette-mukiza.png",
-      link: "https://www.linkedin.com/in/lisette-mukiza/",
-      title: "Co-Organizer",
-      subtitle: "EdTech Enthusiast",
+      profileImage: "/images/team/Lisette.png",
       name: "Lisette Mukiza",
-      subname: "Technologist and Student Leader",
-      description:
-        "Uses technology and education to address youth challenges across Africa and create space for meaningful dialogue and action.",
+      subname: "Student Co-Lead"
+    },
+
+    {
+      profileImage: "/images/team/Patii.png",
+      name: "Patmos Acher Mpakaniye",
+      subname: "Student Marketing Lead & Website Developer",
     },
     {
-      profileImage: "/images/team/stephy.png",
-      link: "https://www.linkedin.com/in/stephyrukundo//",
-      title: "Director",
-      subtitle: "Operations",
-      name: "Rukundo Keza Stephy",
-      subname: "Education and Project Management",
-      description:
-        "An education enthusiast building strong teams and systems with a long-term commitment to improving learning outcomes across Africa.",
-    },
-    {
-      profileImage: "/images/team/patii.png",
-      title: "Director",
-      subtitle: "Marketing",
-      name: "Patii",
-      subname: "Communications and Marketing",
-      description:
-        "Leads event storytelling, campaign direction, and audience engagement across channels.",
-    },
-    {
-      profileImage: "/images/team/ayomide.png",
-      link: "https://www.linkedin.com/in/ayomide-ajayi96/",
-      title: "Director",
-      subtitle: "Finance",
+      profileImage: "/images/team/Ayomide.png",
       name: "Ayomide Ajayi",
-      subname: "Investment Analyst",
-      description:
-        "Supports financial planning for the event while staying deeply engaged in African infrastructure and capital access.",
+      subname: "Student Logistics and Outreach Lead",
     },
     {
-      profileImage: "/images/team/ishimwe.png",
-      link: "https://www.linkedin.com/in/ishimweolivier/",
-      title: "Founder",
-      subtitle: "Fearless Leader",
+      profileImage: "/images/team/Olivier.png",
       name: "Olivier Ishimwe",
-      subname: "Impact-Driven Entrepreneur",
-      description:
-        "Passionate about education, digital innovation, and youth empowerment, with a clear focus on practical impact.",
+      subname: "Student Co-Lead",
     },
+
     {
-      profileImage: "/images/team/pretty.png",
-      title: "Spiritual",
-      subtitle: "Teacher",
-      name: "Pretty, PhD",
-      subname: "Animal Ambassador",
-      description:
-        "A beloved campus companion and a reminder that joy, comfort, and presence matter in every ambitious community.",
+      profileImage: "/images/team/Goitse.png",
+      name: "Goitseone Maikano",
+      subname: "Staff Lead · Student Life Senior Associate",
     },
   ],
+  teamIntro:
+    "TEDxALCHE is organised entirely by ALCHE students, with guidance and oversight from the Student Life team — a hands-on showcase of student leadership from concept to curtain call.",
+
   footer:
     "In the spirit of ideas worth spreading, TED has created TEDx, a program of local, self-organized events that bring people together to share a TED-like experience.",
   contactOptions: [
     { name: "tickets", label: "I want to buy a ticket to the event" },
-    { name: "volunteer", label: "I want to volunteer" },
-    { name: "advertise", label: "I want to advertise" },
-    { name: "donate", label: "I want to donate" },
     { name: "nominateSpeaker", label: "I want to nominate a speaker" },
     { name: "mailingList", label: "I want to join the mailing list" },
   ],
